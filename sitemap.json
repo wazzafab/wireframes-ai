@@ -1,0 +1,61 @@
+{
+  "site_map": [
+    {
+      "page": "Home",
+      "slug": "/",
+      "purpose": "Landing page introducing the PBO and its mission"
+    },
+    {
+      "page": "About",
+      "slug": "/about",
+      "purpose": "Information about the organization, its background, and values"
+    },
+    {
+      "page": "Objectives",
+      "slug": "/objectives",
+      "purpose": "Details on the three core cross-border objectives of the PBO"
+    },
+    {
+      "page": "Frameworks & Standards",
+      "slug": "/frameworks-standards",
+      "purpose": "Information on CSR/CSI measurement frameworks and related standards"
+    },
+    {
+      "page": "Education & Support",
+      "slug": "/education-support",
+      "purpose": "Resources, training, and capacity building for CSI/CSR implementation"
+    },
+    {
+      "page": "Advocacy",
+      "slug": "/advocacy",
+      "purpose": "Information on the PBO's advocacy efforts for accounting reforms"
+    },
+    {
+      "page": "News & Events",
+      "slug": "/news-events",
+      "purpose": "Updates, news, and upcoming events related to the PBO's mission and work"
+    },
+    {
+      "page": "Contact",
+      "slug": "/contact",
+      "purpose": "Contact information and form for inquiries and engagement"
+    }
+  ],
+  "primary_nav": [
+    "Home",
+    "About",
+    "Objectives",
+    "Education & Support",
+    "Advocacy",
+    "Contact"
+  ],
+  "footer_nav": [
+    "Home",
+    "About",
+    "Frameworks & Standards",
+    "Education & Support",
+    "Advocacy",
+    "News & Events",
+    "Contact"
+  ]
+}

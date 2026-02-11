@@ -1,0 +1,595 @@
+{
+  "pages": [
+    {
+      "page": "Home",
+      "slug": "/",
+      "layout": {
+        "h1": "Welcome to the PBO",
+        "sections": [
+          {
+            "id": "hero-1",
+            "type": "hero",
+            "label": "Landing Introduction",
+            "h2": "Introducing the PBO and Our Mission",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "Mission Statement",
+                "placeholder": "To institutionalize global good by establishing standardized CSR measurement, facilitating CSI education and support, and advocating for accounting reforms recognizing social value.",
+                "fields": [],
+                "items": []
+              },
+              {
+                "type": "button",
+                "label": "Primary Call to Action",
+                "placeholder": "Primary Call to Action",
+                "fields": [],
+                "items": [
+                  "Join the initiative for global CSR standardization."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "section-1",
+            "type": "section",
+            "label": "Vision Statement",
+            "h2": "Our Vision",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "Vision Description",
+                "placeholder": "A world where corporate citizenship is transparently measured, socially impactful, and financially incentivized through global standards and accounting reforms.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          },
+          {
+            "id": "features-1",
+            "type": "features",
+            "label": "Our Offerings",
+            "h2": "What We Offer",
+            "h3": [
+              "CSR measurement framework development",
+              "CSI education and training",
+              "Strategic CSI management systems"
+            ],
+            "components": [
+              {
+                "type": "list",
+                "label": "Offerings List",
+                "placeholder": "Offerings List",
+                "fields": [],
+                "items": [
+                  "CSR measurement framework development",
+                  "CSI education and training",
+                  "Strategic CSI management systems",
+                  "Advocacy for accounting standard reforms"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "proof-1",
+            "type": "proof",
+            "label": "Proof Points",
+            "h2": "Why Trust Us",
+            "h3": [
+              "Formalised structure with governance frameworks",
+              "Aligned with Global Reporting Initiative Standards and UN SDGs",
+              "Utilizing SROI and ISO 26000 guidance"
+            ],
+            "components": [
+              {
+                "type": "list",
+                "label": "Proof Points List",
+                "placeholder": "Proof Points List",
+                "fields": [],
+                "items": [
+                  "PBO structure formalizes civic duty with legal and governance frameworks.",
+                  "Alignment with Global Reporting Initiative Standards and UN Sustainable Development Goals.",
+                  "Utilization of SROI Network Methodology and ISO 26000 guidance for social responsibility.",
+                  "Engagement with IASB and FASB for international financial reporting reforms."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "cta-1",
+            "type": "cta",
+            "label": "Join Our Efforts",
+            "h2": "Get Involved",
+            "h3": [],
+            "components": [
+              {
+                "type": "button",
+                "label": "Join Initiative",
+                "placeholder": "Join Initiative",
+                "fields": [],
+                "items": [
+                  "Join the initiative for global CSR standardization."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page": "About",
+      "slug": "/about",
+      "layout": {
+        "h1": "About the PBO",
+        "sections": [
+          {
+            "id": "hero-2",
+            "type": "hero",
+            "label": "About Introduction",
+            "h2": "About the Organization",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "Organization Background",
+                "placeholder": "Information about the organization's background and core values focused on principled, systemic reform and global citizenship.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          },
+          {
+            "id": "section-2",
+            "type": "section",
+            "label": "Mission and Vision",
+            "h2": "Our Core Purpose",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "Mission",
+                "placeholder": "To institutionalize global good by establishing standardized CSR measurement, facilitating CSI education and support, and advocating for accounting reforms recognizing social value.",
+                "fields": [],
+                "items": []
+              },
+              {
+                "type": "text",
+                "label": "Vision",
+                "placeholder": "A world where corporate citizenship is transparently measured, socially impactful, and financially incentivized through global standards and accounting reforms.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          },
+          {
+            "id": "features-2",
+            "type": "features",
+            "label": "Key Audiences",
+            "h2": "Who We Serve",
+            "h3": [
+              "South African citizens",
+              "Corporate entities in CSR/CSI",
+              "SMEs"
+            ],
+            "components": [
+              {
+                "type": "list",
+                "label": "Audience List",
+                "placeholder": "Audience List",
+                "fields": [],
+                "items": [
+                  "South African citizens with civic duty",
+                  "Corporate entities engaging in CSR/CSI",
+                  "Small and Medium Enterprises (SMEs)",
+                  "International financial and accounting standard bodies",
+                  "Global CSR and sustainability stakeholders"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page": "Objectives",
+      "slug": "/objectives",
+      "layout": {
+        "h1": "Our Objectives",
+        "sections": [
+          {
+            "id": "hero-3",
+            "type": "hero",
+            "label": "Objectives Overview",
+            "h2": "PBO's Core Cross-Border Objectives",
+            "h3": [],
+            "components": [
+              {
+                "type": "list",
+                "label": "Objectives List",
+                "placeholder": "Objectives List",
+                "fields": [],
+                "items": [
+                  "Establish a global, public-valued CSR measurement framework.",
+                  "Facilitate CSI measurement, education, and capacity building.",
+                  "Advocate for revising 'Goodwill' accounting to reflect societal value."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "steps-1",
+            "type": "steps",
+            "label": "Our Programs",
+            "h2": "Programs Driving Our Objectives",
+            "h3": [],
+            "components": [
+              {
+                "type": "cards",
+                "label": "Programs Cards",
+                "placeholder": "Programs Cards",
+                "fields": [
+                  "name",
+                  "summary"
+                ],
+                "items": [
+                  "Global CSR Measurement Framework - Develop a transparent, public-valued CSR measurement system aligned with GRI and UN SDGs.",
+                  "CSI Measurement, Education, and Support - Provide education and tools to help organizations strategically manage and measure CSI activities.",
+                  "Goodwill Accounting Reform Advocacy - Advocate for revising accounting standards to recognize social value in goodwill calculations."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "cta-2",
+            "type": "cta",
+            "label": "Engage With Us",
+            "h2": "Support Our Mission",
+            "h3": [],
+            "components": [
+              {
+                "type": "button",
+                "label": "Participate",
+                "placeholder": "Participate",
+                "fields": [],
+                "items": [
+                  "Participate in CSI education and capacity building programs."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page": "Frameworks & Standards",
+      "slug": "/frameworks-standards",
+      "layout": {
+        "h1": "Frameworks & Standards",
+        "sections": [
+          {
+            "id": "hero-4",
+            "type": "hero",
+            "label": "Frameworks Introduction",
+            "h2": "CSR/CSI Measurement Frameworks and Standards",
+            "h3": [],
+            "components": [
+              {
+                "type": "list",
+                "label": "Resources Provided",
+                "placeholder": "Resources Provided",
+                "fields": [],
+                "items": [
+                  "Global Reporting Initiative Standards",
+                  "UN Global Compact Ten Principles",
+                  "SROI Network Methodology",
+                  "ISO 26000 Guidance on Social Responsibility",
+                  "IFRS 3 and IAS 38 accounting standards",
+                  "Integrated Reporting Framework (IIRC)"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "content-1",
+            "type": "content",
+            "label": "Framework Details",
+            "h2": "Standards Supporting Our Mission",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "Framework Detail Text",
+                "placeholder": "Information on CSR/CSI measurement frameworks and related accounting and reporting standards.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          },
+          {
+            "id": "proof-2",
+            "type": "proof",
+            "label": "Framework Validation",
+            "h2": "Alignment With Global Standards",
+            "h3": [],
+            "components": [
+              {
+                "type": "list",
+                "label": "Proof Points",
+                "placeholder": "Proof Points",
+                "fields": [],
+                "items": [
+                  "Alignment with Global Reporting Initiative Standards and UN Sustainable Development Goals.",
+                  "Utilization of SROI Network Methodology and ISO 26000 guidance for social responsibility.",
+                  "Engagement with IASB and FASB for international financial reporting reforms."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page": "Education & Support",
+      "slug": "/education-support",
+      "layout": {
+        "h1": "Education & Support",
+        "sections": [
+          {
+            "id": "hero-5",
+            "type": "hero",
+            "label": "Education Introduction",
+            "h2": "Resources, Training, and Capacity Building",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "Education Summary",
+                "placeholder": "Providing education and tools to help organizations strategically manage and measure CSI activities.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          },
+          {
+            "id": "features-3",
+            "type": "features",
+            "label": "Our Education Programs",
+            "h2": "CSI Measurement, Education and Support",
+            "h3": [],
+            "components": [
+              {
+                "type": "list",
+                "label": "Program Offerings",
+                "placeholder": "Program Offerings",
+                "fields": [],
+                "items": [
+                  "Education and training on CSR/CSI implementation",
+                  "Capacity building for strategic CSI management",
+                  "Access to measurement tools and resources"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "cta-3",
+            "type": "cta",
+            "label": "Join Education Programs",
+            "h2": "Participate and Build Capacity",
+            "h3": [],
+            "components": [
+              {
+                "type": "button",
+                "label": "Enroll Now",
+                "placeholder": "Enroll Now",
+                "fields": [],
+                "items": [
+                  "Participate in CSI education and capacity building programs."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page": "Advocacy",
+      "slug": "/advocacy",
+      "layout": {
+        "h1": "Advocacy for Accounting Reform",
+        "sections": [
+          {
+            "id": "hero-6",
+            "type": "hero",
+            "label": "Advocacy Introduction",
+            "h2": "Our Advocacy Efforts",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "Advocacy Description",
+                "placeholder": "Advocating for revising accounting standards to recognize social value in goodwill calculations and incentivize CSR.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          },
+          {
+            "id": "content-2",
+            "type": "content",
+            "label": "Strategic Focus",
+            "h2": "Goodwill Accounting Reform Advocacy",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "Advocacy Program Details",
+                "placeholder": "Efforts to revise accounting standards ensuring social value is properly reflected and incentivized in financial reporting.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          },
+          {
+            "id": "proof-3",
+            "type": "proof",
+            "label": "Advocacy Proof Points",
+            "h2": "Our Impact",
+            "h3": [],
+            "components": [
+              {
+                "type": "list",
+                "label": "Proof Points",
+                "placeholder": "Proof Points",
+                "fields": [],
+                "items": [
+                  "Engagement with IASB and FASB for international financial reporting reforms.",
+                  "Institutionalized approaches through governance and legal frameworks.",
+                  "Alignment with sustainability and social value accounting initiatives."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "cta-4",
+            "type": "cta",
+            "label": "Support Our Advocacy",
+            "h2": "Join Our Cause",
+            "h3": [],
+            "components": [
+              {
+                "type": "button",
+                "label": "Support Advocacy",
+                "placeholder": "Support Advocacy",
+                "fields": [],
+                "items": [
+                  "Support advocacy for accounting reforms recognizing social value."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page": "News & Events",
+      "slug": "/news-events",
+      "layout": {
+        "h1": "News & Events",
+        "sections": [
+          {
+            "id": "section-3",
+            "type": "section",
+            "label": "Latest Updates",
+            "h2": "Updates on PBO Activities",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "News and Event Summaries",
+                "placeholder": "Stay informed with latest news and upcoming events related to PBO's mission and work.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          },
+          {
+            "id": "section-4",
+            "type": "section",
+            "label": "Upcoming Events",
+            "h2": "Engage With Our Community",
+            "h3": [],
+            "components": [
+              {
+                "type": "list",
+                "label": "Event Listings",
+                "placeholder": "Event details and schedules will be displayed here.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page": "Contact",
+      "slug": "/contact",
+      "layout": {
+        "h1": "Contact Us",
+        "sections": [
+          {
+            "id": "hero-7",
+            "type": "hero",
+            "label": "Contact Information",
+            "h2": "Get In Touch",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "Contact Description",
+                "placeholder": "Use the form below to send inquiries or engage with the PBO.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          },
+          {
+            "id": "form-1",
+            "type": "form",
+            "label": "Contact Form",
+            "h2": "Send a Message",
+            "h3": [],
+            "components": [
+              {
+                "type": "form-field",
+                "label": "Name",
+                "placeholder": "Your full name",
+                "fields": [],
+                "items": []
+              },
+              {
+                "type": "form-field",
+                "label": "Email",
+                "placeholder": "Your email address",
+                "fields": [],
+                "items": []
+              },
+              {
+                "type": "form-field",
+                "label": "Message",
+                "placeholder": "Your message or inquiry",
+                "fields": [],
+                "items": []
+              },
+              {
+                "type": "button",
+                "label": "Submit",
+                "placeholder": "Submit",
+                "fields": [],
+                "items": []
+              }
+            ]
+          },
+          {
+            "id": "section-5",
+            "type": "section",
+            "label": "Social Media",
+            "h2": "Connect on Social Channels",
+            "h3": [],
+            "components": [
+              {
+                "type": "text",
+                "label": "Social Links Info",
+                "placeholder": "No social media links available at this time.",
+                "fields": [],
+                "items": []
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WireframesAI</title>
+  <style>
+    body {font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #f9fafb;}
+    .card {border: 1px solid #e5e7eb; border-radius: 12px; padding: 28px; max-width: 920px; width: 100%; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+    h1 { margin: 0 0 8px; }
+    p { margin: 8px 0; color: #374151; }
+    .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 16px; }
+    input[type="file"] { padding: 8px; }
+    button { padding: 10px 14px; border: 0; border-radius: 10px; cursor: pointer; background: #111827; color: white; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .muted { color: #6b7280; font-size: 13px; }
+    .log { margin-top: 16px; background: #0b1020; color: #d1d5db; padding: 14px; border-radius: 12px; white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: 12px; }
+    .links a { display: inline-block; margin-right: 14px; margin-top: 8px; }
+    .ok { color: #16a34a; }
+    .err { color: #dc2626; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>WireframesAI</h1>
+    <p>
+      Upload your business document and watch WireframesAI extract key information, suggest pages and navigation,
+      and generate visual wireframe outputs.
+    </p>
+
+    <div class="row">
+      <input id="file" type="file" accept=".docx" />
+      <button id="btn" disabled>Generate wireframes</button>
+      <span id="status" class="muted"></span>
+    </div>
+
+    <div id="links" class="links"></div>
+
+    <div id="log" class="log" style="display:none;"></div>
+
+    <p class="muted" style="margin-top:16px;">
+      Tip: Use a .docx file. Each run is isolated and stored under <code>web_runs/&lt;run_id&gt;</code>.
+    </p>
+  </div>
+
+  <script>
+    const fileEl = document.getElementById("file");
+    const btn = document.getElementById("btn");
+    const statusEl = document.getElementById("status");
+    const logEl = document.getElementById("log");
+    const linksEl = document.getElementById("links");
+
+    fileEl.addEventListener("change", () => {
+      btn.disabled = !fileEl.files || !fileEl.files.length;
+      statusEl.textContent = "";
+      linksEl.innerHTML = "";
+      logEl.style.display = "none";
+      logEl.textContent = "";
+    });
+
+    btn.addEventListener("click", async () => {
+      if (!fileEl.files || !fileEl.files.length) return;
+
+      btn.disabled = true;
+      statusEl.textContent = "Uploading & building…";
+      linksEl.innerHTML = "";
+      logEl.style.display = "block";
+      logEl.textContent = "Starting build...\n";
+
+      const fd = new FormData();
+      fd.append("file", fileEl.files[0]);
+
+      try {
+        const res = await fetch("/build", { method: "POST", body: fd });
+        const data = await res.json();
+
+        if (!res.ok) {
+          statusEl.innerHTML = `<span class="err">Build failed</span>`;
+          logEl.textContent += "\nERROR:\n" + JSON.stringify(data, null, 2);
+          btn.disabled = false;
+          return;
+        }
+
+        statusEl.innerHTML = `<span class="ok">Build complete</span> (run_id: ${data.run_id})`;
+
+        // Helpful direct links (requires /runs static mount in app.py — we’ll add next)
+        const runId = data.run_id;
+        const svgHome = `/runs/${runId}/rendered_wireframes/home.svg`;
+
+        linksEl.innerHTML = `
+          <a href="${svgHome}" target="_blank">Open home.svg</a>
+          <a href="/runs/${runId}/sitemap.json" target="_blank">sitemap.json</a>
+          <a href="/runs/${runId}/facts.json" target="_blank">facts.json</a>
+          <a href="/runs/${runId}/semantic.json" target="_blank">semantic.json</a>
+          <a href="/runs/${runId}/wireframes.enriched.json" target="_blank">wireframes.enriched.json</a>
+        `;
+
+        logEl.textContent += "\n" + (data.stdout_tail || "");
+      } catch (e) {
+        statusEl.innerHTML = `<span class="err">Build failed</span>`;
+        logEl.textContent += "\nException:\n" + String(e);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

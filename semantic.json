@@ -1,0 +1,499 @@
+{
+  "pages": [
+    {
+      "page_id": "Home",
+      "label": "Home",
+      "path": "/",
+      "purpose": "Landing page introducing the PBO and its mission",
+      "primary_goal": "Introduce the PBO and inspire engagement to join the global CSR standardization initiative.",
+      "audiences": [
+        "South African citizens with civic duty",
+        "Corporate entities engaging in CSR/CSI",
+        "Small and Medium Enterprises (SMEs)",
+        "International financial and accounting standard bodies",
+        "Global CSR and sustainability stakeholders"
+      ],
+      "sections": [
+        {
+          "section_label": "Introducing the PBO and Our Mission",
+          "semantic_intent": "To introduce the PBO's mission and invite users to join the initiative for global CSR standardization.",
+          "narrative_role": "Opening introduction with mission statement and primary call to action to engage users",
+          "tone": [
+            "principled",
+            "systemic reform",
+            "accountability",
+            "global citizenship",
+            "strategic",
+            "transparent",
+            "advocacy"
+          ],
+          "supporting_facts": [
+            "facts.mission",
+            "facts.primary_ctas[0]"
+          ],
+          "success_signal": "Visitors understand the PBO's mission and are motivated to join the initiative."
+        },
+        {
+          "section_label": "Our Vision",
+          "semantic_intent": "To communicate the PBO's vision for transparent, impactful, and incentivized corporate citizenship globally.",
+          "narrative_role": "Vision statement setting aspirational goals and alignment with mission",
+          "tone": [
+            "principled",
+            "global citizenship",
+            "transparent",
+            "strategic"
+          ],
+          "supporting_facts": [
+            "facts.vision"
+          ],
+          "success_signal": "Visitors grasp the aspirational vision of transparent and socially impactful corporate citizenship."
+        },
+        {
+          "section_label": "What We Offer",
+          "semantic_intent": "To showcase the core offerings and services that the PBO provides to its audiences.",
+          "narrative_role": "Overview of offerings including CSR measurement frameworks, education, strategic systems, and advocacy",
+          "tone": [
+            "principled",
+            "strategic",
+            "transparent"
+          ],
+          "supporting_facts": [
+            "facts.offerings[0]",
+            "facts.offerings[1]",
+            "facts.offerings[2]",
+            "facts.offerings[3]"
+          ],
+          "success_signal": "Visitors understand the breadth of PBO's offerings and support services."
+        },
+        {
+          "section_label": "Why Trust Us",
+          "semantic_intent": "To build trust and credibility by presenting proof points validating the PBO's approach and alignment.",
+          "narrative_role": "Evidence and proofs that demonstrate credibility via governance, alignment, methodologies, and engagement",
+          "tone": [
+            "accountability",
+            "principled",
+            "advocacy"
+          ],
+          "supporting_facts": [
+            "facts.proof_points[0]",
+            "facts.proof_points[1]",
+            "facts.proof_points[2]",
+            "facts.proof_points[3]"
+          ],
+          "success_signal": "Visitors view the PBO as credible and trustworthy based on presented evidence."
+        },
+        {
+          "section_label": "Get Involved",
+          "semantic_intent": "To provide a call to action inviting visitors to participate and support the PBO's mission.",
+          "narrative_role": "Final call to action encouraging user engagement and participation",
+          "tone": [
+            "advocacy",
+            "strategic",
+            "principled"
+          ],
+          "supporting_facts": [
+            "facts.primary_ctas[0]"
+          ],
+          "success_signal": "Visitors take action to join or support the global CSR standardization initiative."
+        }
+      ]
+    },
+    {
+      "page_id": "About",
+      "label": "About",
+      "path": "/about",
+      "purpose": "Information about the organization, its background, and values",
+      "primary_goal": "Inform visitors about the organization's background, mission, vision, and key audiences served.",
+      "audiences": [
+        "South African citizens with civic duty",
+        "Corporate entities engaging in CSR/CSI",
+        "Small and Medium Enterprises (SMEs)",
+        "International financial and accounting standard bodies",
+        "Global CSR and sustainability stakeholders"
+      ],
+      "sections": [
+        {
+          "section_label": "About the Organization",
+          "semantic_intent": "To provide background information and core values of the organization focusing on principled systemic reform and global citizenship.",
+          "narrative_role": "Introduction to the organization's background and core values",
+          "tone": [
+            "principled",
+            "systemic reform",
+            "global citizenship"
+          ],
+          "supporting_facts": [],
+          "success_signal": "Visitors understand the organization's background and value principles."
+        },
+        {
+          "section_label": "Our Core Purpose",
+          "semantic_intent": "To clearly communicate the mission and vision that drive the organization's work and objectives.",
+          "narrative_role": "Presentation of mission and vision statements",
+          "tone": [
+            "principled",
+            "transparent",
+            "strategic"
+          ],
+          "supporting_facts": [
+            "facts.mission",
+            "facts.vision"
+          ],
+          "success_signal": "Visitors comprehend the mission and vision underlying the organization's efforts."
+        },
+        {
+          "section_label": "Who We Serve",
+          "semantic_intent": "To identify and describe the key audiences that the organization is designed to support and engage.",
+          "narrative_role": "Listing and describing the primary audiences served",
+          "tone": [
+            "principled",
+            "accountability",
+            "global citizenship"
+          ],
+          "supporting_facts": [
+            "facts.audiences[0]",
+            "facts.audiences[1]",
+            "facts.audiences[2]",
+            "facts.audiences[3]",
+            "facts.audiences[4]"
+          ],
+          "success_signal": "Visitors know the groups the organization serves and can identify with or target them."
+        }
+      ]
+    },
+    {
+      "page_id": "Objectives",
+      "label": "Objectives",
+      "path": "/objectives",
+      "purpose": "Details on the three core cross-border objectives of the PBO",
+      "primary_goal": "Present the organization's core objectives, supporting programs, and provide calls to engage with the mission.",
+      "audiences": [
+        "South African citizens with civic duty",
+        "Corporate entities engaging in CSR/CSI",
+        "Small and Medium Enterprises (SMEs)",
+        "International financial and accounting standard bodies",
+        "Global CSR and sustainability stakeholders"
+      ],
+      "sections": [
+        {
+          "section_label": "PBO's Core Cross-Border Objectives",
+          "semantic_intent": "To present the three core objectives guiding the organization's cross-border efforts.",
+          "narrative_role": "Summary list of foundational objectives",
+          "tone": [
+            "principled",
+            "strategic",
+            "accountability"
+          ],
+          "supporting_facts": [
+            "facts.objectives[0]",
+            "facts.objectives[1]",
+            "facts.objectives[2]"
+          ],
+          "success_signal": "Visitors clearly understand the primary objectives the organization pursues globally."
+        },
+        {
+          "section_label": "Programs Driving Our Objectives",
+          "semantic_intent": "To highlight the specific programs implemented to realize the stated objectives.",
+          "narrative_role": "Detailed presentation of key programs and their summaries",
+          "tone": [
+            "strategic",
+            "principled",
+            "advocacy"
+          ],
+          "supporting_facts": [
+            "facts.programs[0].name",
+            "facts.programs[0].summary",
+            "facts.programs[1].name",
+            "facts.programs[1].summary",
+            "facts.programs[2].name",
+            "facts.programs[2].summary"
+          ],
+          "success_signal": "Visitors connect the programs with the organization's objectives and understand their purpose."
+        },
+        {
+          "section_label": "Support Our Mission",
+          "semantic_intent": "To invite and motivate visitors to participate in education and capacity building initiatives aligned with the objectives.",
+          "narrative_role": "Call to action to engage with and support the mission via participation",
+          "tone": [
+            "advocacy",
+            "strategic",
+            "principled"
+          ],
+          "supporting_facts": [
+            "facts.primary_ctas[1]"
+          ],
+          "success_signal": "Visitors take action to support and participate in the organization's mission and programs."
+        }
+      ]
+    },
+    {
+      "page_id": "Frameworks & Standards",
+      "label": "Frameworks & Standards",
+      "path": "/frameworks-standards",
+      "purpose": "Information on CSR/CSI measurement frameworks and related standards",
+      "primary_goal": "Educate visitors on the frameworks, standards, and global alignments that support the PBO's mission.",
+      "audiences": [
+        "Corporate entities engaging in CSR/CSI",
+        "International financial and accounting standard bodies",
+        "Global CSR and sustainability stakeholders"
+      ],
+      "sections": [
+        {
+          "section_label": "CSR/CSI Measurement Frameworks and Standards",
+          "semantic_intent": "To introduce key CSR/CSI frameworks and standards relevant to the PBO's mission.",
+          "narrative_role": "Listing of important global resources and standards",
+          "tone": [
+            "principled",
+            "transparent",
+            "accountability"
+          ],
+          "supporting_facts": [
+            "facts.resources[0]",
+            "facts.resources[1]",
+            "facts.resources[2]",
+            "facts.resources[3]",
+            "facts.resources[4]",
+            "facts.resources[5]"
+          ],
+          "success_signal": "Visitors recognize the frameworks and standards that underpin the organization's work."
+        },
+        {
+          "section_label": "Standards Supporting Our Mission",
+          "semantic_intent": "To provide detailed contextual information on CSR/CSI frameworks, measurement, accounting and reporting standards.",
+          "narrative_role": "Descriptive content on how standards support the mission",
+          "tone": [
+            "principled",
+            "strategic",
+            "transparent"
+          ],
+          "supporting_facts": [],
+          "success_signal": "Visitors gain a deeper understanding of the standards contextual to the mission."
+        },
+        {
+          "section_label": "Alignment With Global Standards",
+          "semantic_intent": "To demonstrate the organization's alignment and credibility through global standards and methodologies.",
+          "narrative_role": "Proof points validating global alignment and methodological rigor",
+          "tone": [
+            "accountability",
+            "principled",
+            "advocacy"
+          ],
+          "supporting_facts": [
+            "facts.proof_points[1]",
+            "facts.proof_points[2]",
+            "facts.proof_points[3]"
+          ],
+          "success_signal": "Visitors trust the organization's alignment with internationally recognized standards."
+        }
+      ]
+    },
+    {
+      "page_id": "Education & Support",
+      "label": "Education & Support",
+      "path": "/education-support",
+      "purpose": "Resources, training, and capacity building for CSI/CSR implementation",
+      "primary_goal": "Offer resources, training, and capacity building programs for effective CSI/CSR implementation.",
+      "audiences": [
+        "Corporate entities engaging in CSR/CSI",
+        "Small and Medium Enterprises (SMEs)",
+        "South African citizens with civic duty"
+      ],
+      "sections": [
+        {
+          "section_label": "Resources, Training, and Capacity Building",
+          "semantic_intent": "To introduce the education and capacity building resources available to support CSI/CSR implementation.",
+          "narrative_role": "Overview and introductory text on education and tools provided",
+          "tone": [
+            "principled",
+            "strategic",
+            "transparent"
+          ],
+          "supporting_facts": [
+            "facts.programs[1].summary"
+          ],
+          "success_signal": "Visitors understand available education resources and their value."
+        },
+        {
+          "section_label": "CSI Measurement, Education and Support",
+          "semantic_intent": "To detail the educational program offerings to support CSI measurement and management.",
+          "narrative_role": "Listing of education programs and capacity building services",
+          "tone": [
+            "principled",
+            "strategic",
+            "advocacy"
+          ],
+          "supporting_facts": [],
+          "success_signal": "Visitors know the specific education and support programs offered."
+        },
+        {
+          "section_label": "Participate and Build Capacity",
+          "semantic_intent": "To motivate visitors to enroll and participate in CSI education and capacity building initiatives.",
+          "narrative_role": "Call to action encouraging active participation",
+          "tone": [
+            "advocacy",
+            "strategic",
+            "principled"
+          ],
+          "supporting_facts": [
+            "facts.primary_ctas[1]"
+          ],
+          "success_signal": "Visitors enroll and participate in education and support programs."
+        }
+      ]
+    },
+    {
+      "page_id": "Advocacy",
+      "label": "Advocacy",
+      "path": "/advocacy",
+      "purpose": "Information on the PBO's advocacy efforts for accounting reforms",
+      "primary_goal": "Inform and engage visitors regarding advocacy efforts to reform accounting standards recognizing social value.",
+      "audiences": [
+        "International financial and accounting standard bodies",
+        "Corporate entities engaging in CSR/CSI",
+        "Global CSR and sustainability stakeholders"
+      ],
+      "sections": [
+        {
+          "section_label": "Our Advocacy Efforts",
+          "semantic_intent": "To introduce the advocacy focus on revising accounting standards to recognize social value in goodwill.",
+          "narrative_role": "Introduction to advocacy and its objectives",
+          "tone": [
+            "advocacy",
+            "principled",
+            "strategic"
+          ],
+          "supporting_facts": [
+            "facts.programs[2].summary"
+          ],
+          "success_signal": "Visitors understand advocacy goals related to accounting reforms."
+        },
+        {
+          "section_label": "Goodwill Accounting Reform Advocacy",
+          "semantic_intent": "To provide detailed content on the strategic focus of advocacy for accounting reform and social value recognition.",
+          "narrative_role": "Descriptive text explaining advocacy program details",
+          "tone": [
+            "advocacy",
+            "strategic",
+            "principled"
+          ],
+          "supporting_facts": [],
+          "success_signal": "Visitors gain a thorough understanding of the advocacy efforts and rationale."
+        },
+        {
+          "section_label": "Our Impact",
+          "semantic_intent": "To present proof points validating the effectiveness and reach of the advocacy efforts.",
+          "narrative_role": "Evidence supporting advocacy successes and collaborations",
+          "tone": [
+            "accountability",
+            "advocacy",
+            "principled"
+          ],
+          "supporting_facts": [
+            "facts.proof_points[3]",
+            "facts.proof_points[0]"
+          ],
+          "success_signal": "Visitors perceive the advocacy efforts as impactful and credible."
+        },
+        {
+          "section_label": "Join Our Cause",
+          "semantic_intent": "To invite visitors to support the advocacy initiatives for accounting reforms recognizing social value.",
+          "narrative_role": "Call to action for advocacy support and engagement",
+          "tone": [
+            "advocacy",
+            "strategic",
+            "principled"
+          ],
+          "supporting_facts": [
+            "facts.primary_ctas[2]"
+          ],
+          "success_signal": "Visitors take action to support advocacy for accounting reforms."
+        }
+      ]
+    },
+    {
+      "page_id": "News & Events",
+      "label": "News & Events",
+      "path": "/news-events",
+      "purpose": "Updates, news, and upcoming events related to the PBO's mission and work",
+      "primary_goal": "Keep community informed on latest updates and upcoming events to maintain engagement and transparency.",
+      "audiences": [
+        "South African citizens with civic duty",
+        "Corporate entities engaging in CSR/CSI",
+        "Small and Medium Enterprises (SMEs)",
+        "Global CSR and sustainability stakeholders"
+      ],
+      "sections": [
+        {
+          "section_label": "Updates on PBO Activities",
+          "semantic_intent": "To provide current news and summaries related to PBO's mission and operations.",
+          "narrative_role": "Text updates and news summaries",
+          "tone": [
+            "transparent",
+            "accountability",
+            "principled"
+          ],
+          "supporting_facts": [],
+          "success_signal": "Visitors stay informed on latest developments and activities."
+        },
+        {
+          "section_label": "Engage With Our Community",
+          "semantic_intent": "To list upcoming community events for engagement and networking opportunities.",
+          "narrative_role": "Event listings and schedules",
+          "tone": [
+            "transparent",
+            "community",
+            "principled"
+          ],
+          "supporting_facts": [],
+          "success_signal": "Visitors learn about and participate in PBO events."
+        }
+      ]
+    },
+    {
+      "page_id": "Contact",
+      "label": "Contact",
+      "path": "/contact",
+      "purpose": "Contact information and form for inquiries and engagement",
+      "primary_goal": "Provide visitors with means to contact the organization and engage through messages and social channels.",
+      "audiences": [
+        "South African citizens with civic duty",
+        "Corporate entities engaging in CSR/CSI",
+        "Small and Medium Enterprises (SMEs)",
+        "Global CSR and sustainability stakeholders"
+      ],
+      "sections": [
+        {
+          "section_label": "Get In Touch",
+          "semantic_intent": "To invite and inform visitors to make contact and engage with the PBO via provided channels.",
+          "narrative_role": "Introductory contact information and invitation",
+          "tone": [
+            "transparent",
+            "accountability",
+            "principled"
+          ],
+          "supporting_facts": [],
+          "success_signal": "Visitors are aware of the options to reach out to the PBO."
+        },
+        {
+          "section_label": "Send a Message",
+          "semantic_intent": "To facilitate direct communication from visitors to the organization through a contact form.",
+          "narrative_role": "Form fields enabling message submission",
+          "tone": [
+            "transparent",
+            "accountability"
+          ],
+          "supporting_facts": [],
+          "success_signal": "Visitors successfully submit inquiries or messages to the PBO."
+        },
+        {
+          "section_label": "Connect on Social Channels",
+          "semantic_intent": "To present social media connection options or state their unavailability.",
+          "narrative_role": "Information on social media presence or absence",
+          "tone": [
+            "transparent"
+          ],
+          "supporting_facts": [],
+          "success_signal": "Visitors are informed of social media availability or lack thereof."
+        }
+      ]
+    }
+  ]
+}

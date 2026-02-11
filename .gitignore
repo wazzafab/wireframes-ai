@@ -1,0 +1,5 @@
+__pycache__/
+web_runs/
+rendered_wireframes/
+*.pyc
+.env

@@ -1,0 +1,323 @@
+{
+  "pages": [
+    {
+      "page_slug": "/",
+      "wireframe_section_labels": [
+        "Our Mission to Transform Corporate Citizenship",
+        "Our Vision for a Transparent and Beneficial Future",
+        "What We Offer",
+        "What Supports Our Work",
+        "Get Involved",
+        "Navigate Our Site"
+      ],
+      "semantic_section_labels": [
+        "Our Mission to Transform Corporate Citizenship",
+        "Our Vision for a Transparent and Beneficial Future",
+        "What We Offer",
+        "What Supports Our Work",
+        "Get Involved",
+        "Navigate Our Site"
+      ],
+      "auto_matches": [
+        {
+          "semantic_section_label": "Our Mission to Transform Corporate Citizenship",
+          "best_wireframe_section_label": "Our Mission to Transform Corporate Citizenship",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Our Vision for a Transparent and Beneficial Future",
+          "best_wireframe_section_label": "Our Vision for a Transparent and Beneficial Future",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "What We Offer",
+          "best_wireframe_section_label": "What We Offer",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "What Supports Our Work",
+          "best_wireframe_section_label": "What Supports Our Work",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Get Involved",
+          "best_wireframe_section_label": "Get Involved",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Navigate Our Site",
+          "best_wireframe_section_label": "Navigate Our Site",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "page_slug": "/about",
+      "wireframe_section_labels": [
+        "Who We Are",
+        "Our Civic Duty Foundation",
+        "Leadership and Governance Structure",
+        "Connect With Our Team",
+        "Navigate Our Site"
+      ],
+      "semantic_section_labels": [
+        "Who We Are",
+        "Our Civic Duty Foundation",
+        "Leadership and Governance Structure",
+        "Connect With Our Team",
+        "Navigate Our Site"
+      ],
+      "auto_matches": [
+        {
+          "semantic_section_label": "Who We Are",
+          "best_wireframe_section_label": "Who We Are",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Our Civic Duty Foundation",
+          "best_wireframe_section_label": "Our Civic Duty Foundation",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Leadership and Governance Structure",
+          "best_wireframe_section_label": "Leadership and Governance Structure",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Connect With Our Team",
+          "best_wireframe_section_label": "Connect With Our Team",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Navigate Our Site",
+          "best_wireframe_section_label": "Navigate Our Site",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "page_slug": "/objectives",
+      "wireframe_section_labels": [
+        "Driving Core Cross-Border Objectives",
+        "Our Three Core Objectives",
+        "Evidence Supporting Our Objectives",
+        "Navigate Our Site"
+      ],
+      "semantic_section_labels": [
+        "Driving Core Cross-Border Objectives",
+        "Our Three Core Objectives",
+        "Evidence Supporting Our Objectives",
+        "Navigate Our Site"
+      ],
+      "auto_matches": [
+        {
+          "semantic_section_label": "Driving Core Cross-Border Objectives",
+          "best_wireframe_section_label": "Driving Core Cross-Border Objectives",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Our Three Core Objectives",
+          "best_wireframe_section_label": "Our Three Core Objectives",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Evidence Supporting Our Objectives",
+          "best_wireframe_section_label": "Evidence Supporting Our Objectives",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Navigate Our Site",
+          "best_wireframe_section_label": "Navigate Our Site",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "page_slug": "/csr-framework",
+      "wireframe_section_labels": [
+        "Developing Transparent CSR Metrics",
+        "Key Reference Materials",
+        "Engage With Framework Development",
+        "Navigate Our Site"
+      ],
+      "semantic_section_labels": [
+        "Developing Transparent CSR Metrics",
+        "Key Reference Materials",
+        "Engage With Framework Development",
+        "Navigate Our Site"
+      ],
+      "auto_matches": [
+        {
+          "semantic_section_label": "Developing Transparent CSR Metrics",
+          "best_wireframe_section_label": "Developing Transparent CSR Metrics",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Key Reference Materials",
+          "best_wireframe_section_label": "Key Reference Materials",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Engage With Framework Development",
+          "best_wireframe_section_label": "Engage With Framework Development",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Navigate Our Site",
+          "best_wireframe_section_label": "Navigate Our Site",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "page_slug": "/education-support",
+      "wireframe_section_labels": [
+        "Training Resources for CSI/CSR Management",
+        "Our Key Programs",
+        "Join Our Education and Training Programs",
+        "Navigate Our Site"
+      ],
+      "semantic_section_labels": [
+        "Training Resources for CSI/CSR Management",
+        "Our Key Programs",
+        "Join Our Education and Training Programs",
+        "Navigate Our Site"
+      ],
+      "auto_matches": [
+        {
+          "semantic_section_label": "Training Resources for CSI/CSR Management",
+          "best_wireframe_section_label": "Training Resources for CSI/CSR Management",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Our Key Programs",
+          "best_wireframe_section_label": "Our Key Programs",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Join Our Education and Training Programs",
+          "best_wireframe_section_label": "Join Our Education and Training Programs",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Navigate Our Site",
+          "best_wireframe_section_label": "Navigate Our Site",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "page_slug": "/advocacy",
+      "wireframe_section_labels": [
+        "Promoting Financial Reporting Reform",
+        "Efforts to Reform Accounting Standards",
+        "Join Our Campaign",
+        "Navigate Our Site"
+      ],
+      "semantic_section_labels": [
+        "Promoting Financial Reporting Reform",
+        "Efforts to Reform Accounting Standards",
+        "Join Our Campaign",
+        "Navigate Our Site"
+      ],
+      "auto_matches": [
+        {
+          "semantic_section_label": "Promoting Financial Reporting Reform",
+          "best_wireframe_section_label": "Promoting Financial Reporting Reform",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Efforts to Reform Accounting Standards",
+          "best_wireframe_section_label": "Efforts to Reform Accounting Standards",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Join Our Campaign",
+          "best_wireframe_section_label": "Join Our Campaign",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Navigate Our Site",
+          "best_wireframe_section_label": "Navigate Our Site",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "page_slug": "/resources",
+      "wireframe_section_labels": [
+        "Essential Resources Supporting Our Work",
+        "Navigate Our Site"
+      ],
+      "semantic_section_labels": [
+        "Essential Resources Supporting Our Work",
+        "Navigate Our Site"
+      ],
+      "auto_matches": [
+        {
+          "semantic_section_label": "Essential Resources Supporting Our Work",
+          "best_wireframe_section_label": "Essential Resources Supporting Our Work",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Navigate Our Site",
+          "best_wireframe_section_label": "Navigate Our Site",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "page_slug": "/news-events",
+      "wireframe_section_labels": [
+        "Stay Informed",
+        "Navigate Our Site"
+      ],
+      "semantic_section_labels": [
+        "Stay Informed",
+        "Navigate Our Site"
+      ],
+      "auto_matches": [
+        {
+          "semantic_section_label": "Stay Informed",
+          "best_wireframe_section_label": "Stay Informed",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Navigate Our Site",
+          "best_wireframe_section_label": "Navigate Our Site",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "page_slug": "/contact",
+      "wireframe_section_labels": [
+        "Get In Touch",
+        "Reach Us",
+        "Navigate Our Site"
+      ],
+      "semantic_section_labels": [
+        "Get In Touch",
+        "Reach Us",
+        "Navigate Our Site"
+      ],
+      "auto_matches": [
+        {
+          "semantic_section_label": "Get In Touch",
+          "best_wireframe_section_label": "Get In Touch",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Reach Us",
+          "best_wireframe_section_label": "Reach Us",
+          "score": 1.0
+        },
+        {
+          "semantic_section_label": "Navigate Our Site",
+          "best_wireframe_section_label": "Navigate Our Site",
+          "score": 1.0
+        }
+      ]
+    }
+  ]
+}

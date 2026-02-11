@@ -1,0 +1,72 @@
+{
+  "org_name": null,
+  "tagline": null,
+  "mission": "To institutionalize global good by establishing standardized CSR measurement, facilitating CSI education and support, and advocating for accounting reforms recognizing social value.",
+  "vision": "A world where corporate citizenship is transparently measured, socially impactful, and financially incentivized through global standards and accounting reforms.",
+  "audiences": [
+    "South African citizens with civic duty",
+    "Corporate entities engaging in CSR/CSI",
+    "Small and Medium Enterprises (SMEs)",
+    "International financial and accounting standard bodies",
+    "Global CSR and sustainability stakeholders"
+  ],
+  "offerings": [
+    "CSR measurement framework development",
+    "CSI education and training",
+    "Strategic CSI management systems",
+    "Advocacy for accounting standard reforms"
+  ],
+  "programs": [
+    {
+      "name": "Global CSR Measurement Framework",
+      "summary": "Develop a transparent, public-valued CSR measurement system aligned with GRI and UN SDGs."
+    },
+    {
+      "name": "CSI Measurement, Education, and Support",
+      "summary": "Provide education and tools to help organizations strategically manage and measure CSI activities."
+    },
+    {
+      "name": "Goodwill Accounting Reform Advocacy",
+      "summary": "Advocate for revising accounting standards to recognize social value in goodwill calculations."
+    }
+  ],
+  "objectives": [
+    "Establish a global, public-valued CSR measurement framework.",
+    "Facilitate CSI measurement, education, and capacity building.",
+    "Advocate for revising 'Goodwill' accounting to reflect societal value."
+  ],
+  "proof_points": [
+    "PBO structure formalizes civic duty with legal and governance frameworks.",
+    "Alignment with Global Reporting Initiative Standards and UN Sustainable Development Goals.",
+    "Utilization of SROI Network Methodology and ISO 26000 guidance for social responsibility.",
+    "Engagement with IASB and FASB for international financial reporting reforms."
+  ],
+  "primary_ctas": [
+    "Join the initiative for global CSR standardization.",
+    "Participate in CSI education and capacity building programs.",
+    "Support advocacy for accounting reforms recognizing social value."
+  ],
+  "contact": {
+    "email": null,
+    "phone": null,
+    "address": null,
+    "social": []
+  },
+  "resources": [
+    "Global Reporting Initiative Standards",
+    "UN Global Compact Ten Principles",
+    "SROI Network Methodology",
+    "ISO 26000 Guidance on Social Responsibility",
+    "IFRS 3 and IAS 38 accounting standards",
+    "Integrated Reporting Framework (IIRC)"
+  ],
+  "tone_keywords": [
+    "principled",
+    "systemic reform",
+    "accountability",
+    "global citizenship",
+    "strategic",
+    "transparent",
+    "advocacy"
+  ]
+}
