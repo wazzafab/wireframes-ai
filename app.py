@@ -11,6 +11,7 @@ from fastapi.responses import JSONResponse
 
 APP_ROOT = Path(__file__).resolve().parent
 OUTPUT_DIR = APP_ROOT / "web_runs"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 PIPELINE_CMD = ["python", "build_pipeline.py"]
 
 # Your pipeline expects this filename
