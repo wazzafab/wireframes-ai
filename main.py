@@ -624,10 +624,17 @@ def run_phase2(sitemap: Dict[str, Any], facts: Dict[str, Any]) -> Dict[str, Any]
         "- Always include h3 as an array (can be empty).\n"
         "- Section type MUST be one of the allowed enums (use 'cta', not 'call-to-action').\n"
         "- Every component MUST include placeholder (string), fields (array), items (array) even if empty.\n"
+        "- Generate ONLY ONE page per request.\n"
     )
 
-    user = f"""
-Sitemap:
+    pages_out: List[Dict[str, Any]] = []
+
+    for page in sitemap["site_map"]:
+        expected_page = page["page"]
+        expected_slug = page["slug"]
+
+        user = f"""
+Sitemap (full, for navigation context only):
 {json.dumps(sitemap["site_map"], indent=2)}
 
 Primary nav labels:
@@ -640,17 +647,23 @@ Facts bank (ground truth):
 {json.dumps(facts, indent=2)}
 
 Task:
-Generate wireframes.json for each page in the sitemap.
+Generate wireframes JSON for EXACTLY this one page:
+{json.dumps(page, indent=2)}
 
-For each page:
-- Provide layout.h1
-- Provide layout.sections (3 to 7 sections) with:
-  - id (unique)
-  - type (enum only: {SECTION_TYPES_ALLOWED})
-  - label
-  - h2 (always present)
-  - h3 (always present as array; can be empty)
-  - components array
+Rules:
+- Return a JSON object with a single key: "pages"
+- "pages" must be an array with EXACTLY 1 item (the page above)
+- That item MUST have:
+  - page = "{expected_page}"
+  - slug = "{expected_slug}"
+  - layout.h1
+  - layout.sections (3 to 7 sections), each with:
+    - id (unique)
+    - type (enum only: {SECTION_TYPES_ALLOWED})
+    - label
+    - h2 (always present)
+    - h3 (always present as array; can be empty)
+    - components array
 
 Component rules:
 - Every component object MUST include keys:
@@ -667,9 +680,28 @@ If facts are missing, keep it generic but still meaningful (no lorem).
 Return JSON only.
 """.strip()
 
-    data = call_llm_json(system, user, PHASE2_SCHEMA)
-    data = scrub_wireframes(data)
+        page_data = call_llm_json(system, user, PHASE2_SCHEMA)
+        page_data = scrub_wireframes(page_data)
 
+        # Strict: must be exactly one page returned
+        if "pages" not in page_data or not isinstance(page_data["pages"], list) or len(page_data["pages"]) != 1:
+            die(f"Phase 2 expected exactly 1 page, got: {type(page_data.get('pages'))} len={len(page_data.get('pages', [])) if isinstance(page_data.get('pages'), list) else 'n/a'}")
+
+        one = page_data["pages"][0]
+
+        # Strict: enforce expected identity
+        if one.get("page") != expected_page or one.get("slug") != expected_slug:
+            die(
+                "Phase 2 page identity mismatch.\n"
+                f"Expected: ({expected_page}, {expected_slug})\n"
+                f"Got: ({one.get('page')}, {one.get('slug')})"
+            )
+
+        pages_out.append(one)
+
+    data = {"pages": pages_out}
+
+    # Final sanity check: must match sitemap pages exactly
     sm_pages = {(p["page"], p["slug"]) for p in sitemap["site_map"]}
     wf_pages = {(p["page"], p["slug"]) for p in data["pages"]}
     if sm_pages != wf_pages:
@@ -678,7 +710,6 @@ Return JSON only.
         die(f"Phase 2 page mismatch.\nMissing: {missing}\nExtra: {extra}")
 
     return data
-
 
 # =========================
 # MAIN / CLI
