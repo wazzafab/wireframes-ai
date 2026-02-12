@@ -683,16 +683,24 @@ If facts are missing, keep it generic but still meaningful (no lorem).
 Return JSON only.
 """.strip()
 
-page_data = call_llm_json(system, user, PHASE2_SCHEMA, validate_schema=False)
+        # IMPORTANT: skip schema validation here; scrub first, then validate.
+        page_data = call_llm_json(system, user, PHASE2_SCHEMA, validate_schema=False)
         page_data = scrub_wireframes(page_data)
 
-        # Strict: must be exactly one page returned
+        # Now validate after scrub (this is where structure is normalized)
+        validate(instance=page_data, schema=PHASE2_SCHEMA)
+
+        # Must be exactly one page returned
         if "pages" not in page_data or not isinstance(page_data["pages"], list) or len(page_data["pages"]) != 1:
-            die(f"Phase 2 expected exactly 1 page, got: {type(page_data.get('pages'))} len={len(page_data.get('pages', [])) if isinstance(page_data.get('pages'), list) else 'n/a'}")
+            die(
+                "Phase 2 expected exactly 1 page.\n"
+                f"Got pages type={type(page_data.get('pages'))} "
+                f"len={len(page_data.get('pages', [])) if isinstance(page_data.get('pages'), list) else 'n/a'}"
+            )
 
         one = page_data["pages"][0]
 
-        # Strict: enforce expected identity
+        # Enforce expected identity
         if one.get("page") != expected_page or one.get("slug") != expected_slug:
             die(
                 "Phase 2 page identity mismatch.\n"
