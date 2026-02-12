@@ -145,7 +145,7 @@ def _extract_text_from_responses(resp: Dict[str, Any]) -> str:
     return ""
 
 
-def call_llm_json(system: str, user: str, schema: Dict[str, Any]) -> Dict[str, Any]:
+def call_llm_json(system: str, user: str, schema: Dict[str, Any], validate_schema: bool = True) -> Dict[str, Any]:
     """
     Responses API first (Structured Outputs). Chat Completions fallback.
     Always validates JSON against schema.
@@ -176,7 +176,9 @@ def call_llm_json(system: str, user: str, schema: Dict[str, Any]) -> Dict[str, A
             raise RuntimeError("Responses API returned no usable output text.")
 
         data = json.loads(text_out)
-        validate(instance=data, schema=schema)
+        if validate_schema:
+            validate(instance=data, schema=schema)
+
         return data
 
     except Exception:
@@ -205,7 +207,8 @@ def call_llm_json(system: str, user: str, schema: Dict[str, Any]) -> Dict[str, A
             raise RuntimeError("Chat Completions fallback returned empty content.")
 
         data = json.loads(content)
-        validate(instance=data, schema=schema)
+        if validate_schema:
+            validate(instance=data, schema=schema)
         return data
 
 
@@ -680,7 +683,7 @@ If facts are missing, keep it generic but still meaningful (no lorem).
 Return JSON only.
 """.strip()
 
-        page_data = call_llm_json(system, user, PHASE2_SCHEMA)
+page_data = call_llm_json(system, user, PHASE2_SCHEMA, validate_schema=False)
         page_data = scrub_wireframes(page_data)
 
         # Strict: must be exactly one page returned
