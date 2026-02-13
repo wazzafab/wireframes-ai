@@ -1,33 +1,33 @@
-import os
 import shutil
 import subprocess
 import uuid
 from pathlib import Path
 
 from fastapi import FastAPI, UploadFile, File, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse
 
 APP_ROOT = Path(__file__).resolve().parent
 OUTPUT_DIR = APP_ROOT / "web_runs"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
 PIPELINE_CMD = ["python", "build_pipeline.py"]
 
 # Your pipeline expects this filename
 PIPELINE_INPUT_NAME = "input.docx"
 
 app = FastAPI(title="Wireframe Builder", version="0.1")
+
 # Serve UI + static assets
 app.mount("/static", StaticFiles(directory=str(APP_ROOT / "static")), name="static")
 
 # Serve run artifacts (SVGs + JSON) by run_id
 app.mount("/runs", StaticFiles(directory=str(OUTPUT_DIR)), name="runs")
 
+
 @app.get("/")
 def home():
     return FileResponse(str(APP_ROOT / "static" / "index.html"))
-
 
 
 @app.post("/build")
@@ -38,9 +38,14 @@ async def build(file: UploadFile = File(...)):
 
     try:
         # Copy project files into run folder (so runs are isolated)
-        # Exclude folders that can contaminate a run (previous outputs, caches)
         EXCLUDE_DIRS = {"web_runs", "rendered_wireframes", "__pycache__", ".git"}
-        EXCLUDE_FILES = {"wireframes.json", "wireframes.enriched.json", "semantic.json", "sitemap.json", "facts.json"}
+        EXCLUDE_FILES = {
+            "wireframes.json",
+            "wireframes.enriched.json",
+            "semantic.json",
+            "sitemap.json",
+            "facts.json",
+        }
 
         for item in APP_ROOT.iterdir():
             if item.name in EXCLUDE_DIRS:
@@ -57,6 +62,7 @@ async def build(file: UploadFile = File(...)):
         stale_render_dir = run_dir / "rendered_wireframes"
         if stale_render_dir.exists():
             shutil.rmtree(stale_render_dir)
+
         # Ensure no stale structural artifacts exist
         for stale_file in [
             "sitemap.json",
@@ -67,7 +73,7 @@ async def build(file: UploadFile = File(...)):
         ]:
             p = run_dir / stale_file
             if p.exists():
-                p.unlink()    
+                p.unlink()
 
         # IMPORTANT: write uploaded doc LAST so nothing overwrites it
         input_path = run_dir / PIPELINE_INPUT_NAME
@@ -93,7 +99,13 @@ async def build(file: UploadFile = File(...)):
                 },
             )
 
-        # Return key output locations
+        # Collect the SVGs actually generated (authoritative list)
+        svg_dir = run_dir / "rendered_wireframes"
+        svg_files = []
+        if svg_dir.exists():
+            svg_files = sorted([p.name for p in svg_dir.glob("*.svg")])
+
+        # Return key output locations + SVG file list
         return JSONResponse(
             {
                 "run_id": run_id,
@@ -104,6 +116,7 @@ async def build(file: UploadFile = File(...)):
                     "wireframes_enriched": str((run_dir / "wireframes.enriched.json").relative_to(APP_ROOT)),
                     "rendered_dir": str((run_dir / "rendered_wireframes").relative_to(APP_ROOT)),
                 },
+                "svgs": svg_files,
                 "stdout_tail": result.stdout[-2000:],
             }
         )
