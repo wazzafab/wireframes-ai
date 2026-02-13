@@ -206,9 +206,10 @@
     <p class="tip">Tip: Use a .docx file. Each run is isolated and stored under web_runs/&lt;run_id&gt;.</p>
 
     <!-- New section: SVG list moved below console + tip -->
-    <h2>Your Generated Wireframes</h2>
-    <div id="wireframes" class="wireframe-list"></div>
-  </div>
+    <div id="wireframeSection" style="display:none;">
+      <h2>Your Generated Wireframes</h2>
+      <div id="wireframes" class="wireframe-list"></div>
+    </div>
 
   <script>
     const fileEl = document.getElementById("file");
@@ -331,6 +332,7 @@
         // Move SVG links to below the console, ordered logically
         const orderedSvgPaths = await buildOrderedSvgList(data.run_id, data.svgs);
         renderWireframeLinks(data.run_id, orderedSvgPaths);
+        document.getElementById("wireframeSection").style.display = "block";
 
         logEl.textContent += "\n" + (data.stdout_tail || "");
       } catch (e) {
