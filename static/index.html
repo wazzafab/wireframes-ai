@@ -85,15 +85,25 @@
 
         // Helpful direct links (requires /runs static mount in app.py — we’ll add next)
         const runId = data.run_id;
-        const svgHome = `/runs/${runId}/rendered_wireframes/home.svg`;
 
+        let svgLinks = "";
+        
+        if (Array.isArray(data.svgs)) {
+          svgLinks = data.svgs.map(file =>
+            `<a href="/runs/${runId}/rendered_wireframes/${file}" target="_blank">
+              Open ${file}
+            </a>`
+          ).join(" | ");
+        }
+        
         linksEl.innerHTML = `
-          <a href="${svgHome}" target="_blank">Open home.svg</a>
+          ${svgLinks}<br>
           <a href="/runs/${runId}/sitemap.json" target="_blank">sitemap.json</a>
           <a href="/runs/${runId}/facts.json" target="_blank">facts.json</a>
           <a href="/runs/${runId}/semantic.json" target="_blank">semantic.json</a>
           <a href="/runs/${runId}/wireframes.enriched.json" target="_blank">wireframes.enriched.json</a>
         `;
+
 
         logEl.textContent += "\n" + (data.stdout_tail || "");
       } catch (e) {
