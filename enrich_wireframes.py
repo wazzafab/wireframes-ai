@@ -16,6 +16,15 @@ def semantic_page_key(p):
     return p.get("path") or p.get("page_id") or ""
 
 
+def _norm(s: str) -> str:
+    s = (s or "").lower().strip()
+    out = []
+    for ch in s:
+        if ch.isalnum() or ch.isspace():
+            out.append(ch)
+    return " ".join("".join(out).split())
+
+
 def main():
     wireframes = load("wireframes.json")
     semantics = load("semantic.json")
@@ -52,10 +61,24 @@ def main():
             label = section.get("h2") or section.get("label") or ""
 
             sem = None
+            label_norm = _norm(label)
+
             for k in page_key_candidates:
-                sem = sem_lookup.get(k, {}).get(label)
+                page_secs = sem_lookup.get(k, {})
+
+                # 1) exact match
+                sem = page_secs.get(label)
                 if sem:
                     break
+
+                # 2) normalized match (resilient to punctuation/case/truncation)
+                if label_norm:
+                    for sec_label, sec_obj in page_secs.items():
+                        if _norm(sec_label) == label_norm:
+                            sem = sec_obj
+                            break
+                    if sem:
+                        break
 
             if sem:
                 # Inject semantic metadata — renderer-safe keys
@@ -91,9 +114,13 @@ def main():
                             ["facts.objectives", "facts.steps", "facts.criteria", "facts.faq", "facts.key_points"]
                         )
                     elif ctype == "cards":
-                        comp["provenance_hint"] = pick(["facts.offerings", "facts.services", "facts.resources", "facts.programs"])
+                        comp["provenance_hint"] = pick(
+                            ["facts.offerings", "facts.services", "facts.resources", "facts.programs"]
+                        )
                     elif ctype == "cta":
-                        comp["provenance_hint"] = pick(["facts.cta", "facts.contact", "facts.email", "facts.phone"])
+                        comp["provenance_hint"] = pick(
+                            ["facts.cta", "facts.contact", "facts.email", "facts.phone"]
+                        )
                     else:
                         comp["provenance_hint"] = supporting
 
