@@ -691,14 +691,23 @@ Return JSON only.
         validate(instance=page_data, schema=PHASE2_SCHEMA)
 
         # Must be exactly one page returned
-        if "pages" not in page_data or not isinstance(page_data["pages"], list) or len(page_data["pages"]) != 1:
+        pages = page_data.get("pages")
+        
+        if not isinstance(pages, list) or not pages:
+            die("Phase 2 returned no valid pages.")
+        
+        one = None
+        for candidate in pages:
+            if candidate.get("page") == expected_page and candidate.get("slug") == expected_slug:
+                one = candidate
+                break
+        
+        if one is None:
             die(
-                "Phase 2 expected exactly 1 page.\n"
-                f"Got pages type={type(page_data.get('pages'))} "
-                f"len={len(page_data.get('pages', [])) if isinstance(page_data.get('pages'), list) else 'n/a'}"
+                "Phase 2 page identity mismatch.\n"
+                f"Expected: ({expected_page}, {expected_slug})\n"
+                f"Returned: {[(p.get('page'), p.get('slug')) for p in pages]}"
             )
-
-        one = page_data["pages"][0]
 
         # Enforce expected identity
         if one.get("page") != expected_page or one.get("slug") != expected_slug:
