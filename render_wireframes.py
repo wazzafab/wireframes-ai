@@ -529,9 +529,13 @@ def draw_section(svg, x, y, w, sec: dict, idx: int):
         if not left_lines:
             left_lines = [f"{label} item {i}" for i in range(1, 4)]
 
-        svg.append(text(inner_x + 6, inner_y + 18, truncate(left_lines[0], 22), extra_cls="small"))
-        svg.append(text(inner_x + 6, inner_y + 38, truncate(left_lines[1], 22), extra_cls="small"))
-        svg.append(text(inner_x + 6, inner_y + 58, truncate(left_lines[2], 22), extra_cls="small"))
+        line0 = left_lines[0] if len(left_lines) > 0 else ""
+        line1 = left_lines[1] if len(left_lines) > 1 else ""
+        line2 = left_lines[2] if len(left_lines) > 2 else ""
+        
+        svg.append(text(inner_x + 6, inner_y + 22, truncate(line0, 22), extra_cls="small"))
+        svg.append(text(inner_x + 6, inner_y + 40, truncate(line1, 22), extra_cls="small"))
+        svg.append(text(inner_x + 6, inner_y + 58, truncate(line2, 22), extra_cls="small"))
 
         subtitle = truncate(h3[0], 60) if h3 else truncate(label, 60)
         svg.append(text(rx, inner_y + 24, subtitle.upper(), extra_cls="h2"))
