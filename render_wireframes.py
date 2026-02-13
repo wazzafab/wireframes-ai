@@ -203,7 +203,7 @@ def css_block() -> str:
       .button-text-inv { font-size: 12px; font-weight: 700; fill: #ffffff; }
 
       .imgph {
-        fill: #ffffff;
+        fill: #e9e9e9;              /* light grey hero background */
         stroke: #2b2b2b;
         stroke-width: 2.2;
         stroke-linecap: round;
@@ -212,11 +212,12 @@ def css_block() -> str:
 
       .imgx {
         stroke: #2b2b2b;
-        stroke-width: 2.2;
+        stroke-width: 1.6;          /* slightly lighter stroke */
         stroke-linecap: round;
         stroke-linejoin: round;
-        opacity: 0.8;
+        opacity: 0.18;              /* faint X behind text */
       }
+
     </style>
     """
 
@@ -454,28 +455,37 @@ def draw_section(svg, x, y, w, sec: dict, idx: int):
     inner_w = w - (2 * SECTION_PAD)
 
     if st == "hero":
-        img_h = 220
+        # Slightly taller hero so text + CTA can breathe
+        img_h = 280
+
+        # Light grey background + faint X behind all text
         svg.append(rect(inner_x, inner_y, inner_w, img_h, cls="imgph", rx=10))
-        svg.append(line(inner_x + 10, inner_y + 10, inner_x + inner_w - 10, inner_y + img_h - 10))
-        svg.append(line(inner_x + inner_w - 10, inner_y + 10, inner_x + 10, inner_y + img_h - 10))
+        svg.append(line(inner_x + 10, inner_y + 10, inner_x + inner_w - 10, inner_y + img_h - 10, cls="imgx"))
+        svg.append(line(inner_x + inner_w - 10, inner_y + 10, inner_x + 10, inner_y + img_h - 10, cls="imgx"))
 
         headline = truncate(h2, 44)
         svg.append(text(x + w/2, inner_y + 120, headline, extra_cls="h1", anchor="middle"))
 
         # optional h3 lines under the headline
+        yy = inner_y + 146
         if h3:
-            yy = inner_y + 146
             for t in h3[:2]:
                 svg.append(text(x + w/2, yy, truncate(t, 80), extra_cls="small muted", anchor="middle"))
                 yy += 18
 
+        # Place button BELOW whatever text was rendered (prevents overlap)
+        btn_y = max(inner_y + 150, yy + 10)
+
         btn = first_button(sec)
         btn_label = truncate(best_text_for_component(btn, "Learn More") if btn else "Learn More", 22)
-        svg.append(button(x + (w/2) - 70, inner_y + 150, 140, 34, btn_label, dark=False))
+        svg.append(button(x + (w/2) - 70, btn_y, 140, 34, btn_label, dark=False))
 
+        # Caption sits below button, still inside hero area
+        cap_y = btn_y + 50
         cap = first_text_like(sec)
         cap_text = truncate(best_text_for_component(cap, "Caption size text here with a link") if cap else "Caption size text here with a link", 70)
-        svg.append(text(x + (w/2), inner_y + 200, cap_text, extra_cls="small nav-link", anchor="middle"))
+        svg.append(text(x + (w/2), cap_y, cap_text, extra_cls="small nav-link", anchor="middle"))
+
         return y + h + SECTION_GAP
 
     if st == "features":
