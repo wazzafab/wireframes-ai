@@ -559,30 +559,68 @@ def draw_section(svg, x, y, w, sec: dict, idx: int):
         svg.append(text(inner_x + 6, heading_y, truncate((sec.get("label") or "CONTENT").upper(), 36), extra_cls="h2"))
 
         # bullet items
-        bullet_rows = 4
-        bullet_items = []
+        # bullet items (layout logic)
+        bullet_items_raw = []
         if lists:
-            bullet_items = list_items_from_component(lists[0])
-            if bullet_items:
-                bullet_rows = max(4, min(12, len(bullet_items)))
+            bullet_items_raw = list_items_from_component(lists[0]) or []
 
-        # build bullets; if not enough, pad with placeholders
-        while len(bullet_items) < bullet_rows:
-            bullet_items.append("Lorem ipsum dolor sit amet,")
+        # Threshold: need at least 8 bullets to justify a true 2-column list (4 + 4)
+        use_two_cols = len(bullet_items_raw) >= 8
 
         col_y = heading_y + 32
+        row_h = 22
         col_gap = 26
-        col_w = (inner_w - col_gap) / 2
 
-        # split into two columns
-        left_col = bullet_items[:bullet_rows]
-        right_col = bullet_items[:bullet_rows]  # keep same density both columns (wireframe vibe)
+        if use_two_cols:
+            # Two columns, split unique items across columns (no image placeholder)
+            items = bullet_items_raw[:12]  # cap for wireframe density
+            left_n = (len(items) + 1) // 2
+            left_col = items[:left_n]
+            right_col = items[left_n:]
 
-        for col, col_items in enumerate([left_col, right_col]):
-            bx = inner_x + col * (col_w + col_gap)
-            for i in range(bullet_rows):
-                svg.append(text(bx + 6, col_y + i*22, "• " + truncate(col_items[i], 34), extra_cls="small"))
+            # ensure a minimum visual height
+            rows = max(4, max(len(left_col), len(right_col)))
+
+            while len(left_col) < rows:
+                left_col.append("Additional point...")
+            while len(right_col) < rows:
+                right_col.append("Additional point...")
+
+            col_w = (inner_w - col_gap) / 2
+
+            for col, col_items in enumerate([left_col, right_col]):
+                bx = inner_x + col * (col_w + col_gap)
+                for i in range(rows):
+                    svg.append(text(bx + 6, col_y + i * row_h, "• " + truncate(col_items[i], 34), extra_cls="small"))
+
+        else:
+            # One column list on the left + image placeholder on the right
+            items = bullet_items_raw[:10]
+
+            rows = max(4, len(items))
+            while len(items) < rows:
+                items.append("Additional point...")
+
+            # Allocate space: list left, image right (balanced)
+            list_w = int(inner_w * 0.55)
+            img_x = inner_x + list_w + col_gap
+            img_w = inner_w - list_w - col_gap
+
+            # Render single list
+            for i in range(rows):
+                svg.append(text(inner_x + 6, col_y + i * row_h, "• " + truncate(items[i], 52), extra_cls="small"))
+
+            # Render sized image placeholder
+            img_h = min(240, rows * row_h + 18)
+            img_y = col_y
+
+            svg.append(rect(img_x, img_y, img_w, img_h, cls="sketch-dash", rx=12))
+            svg.append(line(img_x + 10, img_y + 10, img_x + img_w - 10, img_y + img_h - 10, cls="imgx"))
+            svg.append(line(img_x + img_w - 10, img_y + 10, img_x + 10, img_y + img_h - 10, cls="imgx"))
+            svg.append(text(img_x + 14, img_y + 24, "IMAGE", extra_cls="small muted"))
+
         return y + h + SECTION_GAP
+
 
     if st == "steps":
         # Render a vertical step list from list items
