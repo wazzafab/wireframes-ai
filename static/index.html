@@ -4,110 +4,304 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>WireframesAI</title>
+
   <style>
-    body {font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #f9fafb;}
-    .card {border: 1px solid #e5e7eb; border-radius: 12px; padding: 28px; max-width: 920px; width: 100%; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-    h1 { margin: 0 0 8px; }
-    p { margin: 8px 0; color: #374151; }
-    .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 16px; }
-    input[type="file"] { padding: 8px; }
-    button { padding: 10px 14px; border: 0; border-radius: 10px; cursor: pointer; background: #111827; color: white; }
-    button:disabled { opacity: 0.5; cursor: not-allowed; }
-    .muted { color: #6b7280; font-size: 13px; }
-    .log { margin-top: 16px; background: #0b1020; color: #d1d5db; padding: 14px; border-radius: 12px; white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: 12px; }
-    .links a { display: inline-block; margin-right: 14px; margin-top: 8px; }
-    .ok { color: #16a34a; }
-    .err { color: #dc2626; }
+    :root {
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+      --panel: #0b1220;
+      --panelText: #e5e7eb;
+      --ok: #16a34a;
+      --err: #dc2626;
+      --link: #2563eb;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 24px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 10px 0;
+      font-size: 40px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    p.lead {
+      margin: 0 0 14px 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.5;
+      max-width: 72ch;
+    }
+
+    hr.divider {
+      border: 0;
+      height: 1px;
+      background: var(--border);
+      margin: 18px 0;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin: 6px 0;
+    }
+
+    input[type="file"] {
+      max-width: 360px;
+    }
+
+    button {
+      background: #0f172a;
+      color: #fff;
+      border: 0;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-left: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .ok { color: var(--ok); font-weight: 700; }
+    .err { color: var(--err); font-weight: 700; }
+
+    .artifact-links {
+      margin: 10px 0 2px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 14px;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .console {
+      margin-top: 0;
+      background: var(--panel);
+      color: var(--panelText);
+      border-radius: 14px;
+      padding: 18px 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      min-height: 260px;
+    }
+
+    .tip {
+      margin: 10px 0 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    h2 {
+      margin: 22px 0 10px 0;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .wireframe-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .wireframe-item {
+      color: var(--text);
+    }
+
+    .wireframe-item a {
+      font-weight: 600;
+    }
   </style>
 </head>
+
 <body>
-  <div class="card">
+  <div class="wrap">
     <h1>WireframesAI</h1>
-    <p>
+    <p class="lead">
       Upload your business document and watch WireframesAI extract key information, suggest pages and navigation,
       and generate visual wireframe outputs.
     </p>
 
-    <div class="row">
-      <input id="file" type="file" accept=".docx" />
-      <button id="btn" disabled>Generate wireframes</button>
-      <span id="status" class="muted"></span>
+    <!-- Divider: Title/intro -> controls -->
+    <hr class="divider" />
+
+    <div class="controls">
+      <input id="file" type="file" accept=".docx,.txt" />
+      <button id="btn">Generate wireframes</button>
+      <span id="status" class="status"></span>
     </div>
 
-    <div id="links" class="links"></div>
+    <div id="links" class="artifact-links"></div>
 
-    <div id="log" class="log" style="display:none;"></div>
+    <!-- Divider: controls -> console -->
+    <hr class="divider" />
 
-    <p class="muted" style="margin-top:16px;">
-      Tip: Use a .docx file. Each run is isolated and stored under <code>web_runs/&lt;run_id&gt;</code>.
-    </p>
+    <div id="log" class="console">Ready.</div>
+    <p class="tip">Tip: Use a .docx file. Each run is isolated and stored under web_runs/&lt;run_id&gt;.</p>
+
+    <!-- New section: SVG list moved below console + tip -->
+    <h2>Your Generated Wireframes</h2>
+    <div id="wireframes" class="wireframe-list"></div>
   </div>
 
   <script>
     const fileEl = document.getElementById("file");
     const btn = document.getElementById("btn");
     const statusEl = document.getElementById("status");
-    const logEl = document.getElementById("log");
     const linksEl = document.getElementById("links");
+    const logEl = document.getElementById("log");
+    const wireframesEl = document.getElementById("wireframes");
 
-    fileEl.addEventListener("change", () => {
-      btn.disabled = !fileEl.files || !fileEl.files.length;
-      statusEl.textContent = "";
-      linksEl.innerHTML = "";
-      logEl.style.display = "none";
-      logEl.textContent = "";
-    });
+    function setStatusOk(runId) {
+      statusEl.innerHTML = `<span class="ok">Build complete</span> (run_id: ${runId})`;
+    }
+
+    function setStatusErr() {
+      statusEl.innerHTML = `<span class="err">Build failed</span>`;
+    }
+
+    function buildArtifactLinks(runId) {
+      linksEl.innerHTML = `
+        <a href="/runs/${runId}/sitemap.json" target="_blank">sitemap.json</a>
+        <a href="/runs/${runId}/facts.json" target="_blank">facts.json</a>
+        <a href="/runs/${runId}/semantic.json" target="_blank">semantic.json</a>
+        <a href="/runs/${runId}/wireframes.enriched.json" target="_blank">wireframes.enriched.json</a>
+      `;
+    }
+
+    function slugToSvgPath(slug) {
+      if (slug === "/") return "/home.svg";
+      const s = (slug || "").replace(/^\/+/, "").trim();
+      return `/${s}.svg`;
+    }
+
+    function renderWireframeLinks(runId, orderedSvgPaths) {
+      if (!Array.isArray(orderedSvgPaths) || orderedSvgPaths.length === 0) {
+        wireframesEl.innerHTML = `<div class="wireframe-item">No SVGs found for this run.</div>`;
+        return;
+      }
+
+      wireframesEl.innerHTML = orderedSvgPaths.map(svgPath => {
+        const href = `/runs/${runId}/rendered_wireframes/${svgPath.replace(/^\//, "")}`;
+        return `
+          <div class="wireframe-item">
+            Rendered Wireframe:
+            <a href="${href}" target="_blank">${svgPath}</a>
+          </div>
+        `;
+      }).join("");
+    }
+
+    async function buildOrderedSvgList(runId, svgFilesFromBackend) {
+      // Convert backend ["home.svg","about.svg",...] into ["/home.svg","/about.svg",...]
+      const available = new Set(
+        (Array.isArray(svgFilesFromBackend) ? svgFilesFromBackend : []).map(f => `/${String(f).replace(/^\/+/, "")}`)
+      );
+
+      // Try to order by sitemap site_map (logical/navigation order)
+      try {
+        const r = await fetch(`/runs/${runId}/sitemap.json`, { cache: "no-store" });
+        if (!r.ok) throw new Error("sitemap fetch failed");
+        const sitemap = await r.json();
+
+        const ordered = [];
+        const siteMap = Array.isArray(sitemap.site_map) ? sitemap.site_map : [];
+
+        for (const p of siteMap) {
+          const slug = p && p.slug ? p.slug : "";
+          const svgPath = slugToSvgPath(slug);
+          if (available.has(svgPath)) ordered.push(svgPath);
+        }
+
+        // Append any SVGs not represented in sitemap (just in case)
+        for (const svgPath of available) {
+          if (!ordered.includes(svgPath)) ordered.push(svgPath);
+        }
+
+        return ordered;
+      } catch (e) {
+        // Fallback: home first, then alphabetical
+        const all = Array.from(available);
+        all.sort((a, b) => a.localeCompare(b));
+        const homeIdx = all.indexOf("/home.svg");
+        if (homeIdx > 0) {
+          all.splice(homeIdx, 1);
+          all.unshift("/home.svg");
+        }
+        return all;
+      }
+    }
 
     btn.addEventListener("click", async () => {
-      if (!fileEl.files || !fileEl.files.length) return;
-
-      btn.disabled = true;
-      statusEl.textContent = "Uploading & building…";
+      wireframesEl.innerHTML = ""; // clear previous run
       linksEl.innerHTML = "";
-      logEl.style.display = "block";
+      statusEl.textContent = "";
       logEl.textContent = "Starting build...\n";
 
-      const fd = new FormData();
-      fd.append("file", fileEl.files[0]);
+      const f = fileEl.files && fileEl.files[0];
+      if (!f) {
+        logEl.textContent += "\nPlease choose a .docx or .txt file first.";
+        return;
+      }
+
+      btn.disabled = true;
 
       try {
+        const fd = new FormData();
+        fd.append("file", f);
+
         const res = await fetch("/build", { method: "POST", body: fd });
         const data = await res.json();
 
         if (!res.ok) {
-          statusEl.innerHTML = `<span class="err">Build failed</span>`;
+          setStatusErr();
           logEl.textContent += "\nERROR:\n" + JSON.stringify(data, null, 2);
-          btn.disabled = false;
           return;
         }
 
-        statusEl.innerHTML = `<span class="ok">Build complete</span> (run_id: ${data.run_id})`;
+        setStatusOk(data.run_id);
+        buildArtifactLinks(data.run_id);
 
-        // Helpful direct links (requires /runs static mount in app.py — we’ll add next)
-        const runId = data.run_id;
-
-        let svgLinks = "";
-        
-        if (Array.isArray(data.svgs)) {
-          svgLinks = data.svgs.map(file =>
-            `<a href="/runs/${runId}/rendered_wireframes/${file}" target="_blank">
-              Open ${file}
-            </a>`
-          ).join(" | ");
-        }
-        
-        linksEl.innerHTML = `
-          ${svgLinks}<br>
-          <a href="/runs/${runId}/sitemap.json" target="_blank">sitemap.json</a>
-          <a href="/runs/${runId}/facts.json" target="_blank">facts.json</a>
-          <a href="/runs/${runId}/semantic.json" target="_blank">semantic.json</a>
-          <a href="/runs/${runId}/wireframes.enriched.json" target="_blank">wireframes.enriched.json</a>
-        `;
-
+        // Move SVG links to below the console, ordered logically
+        const orderedSvgPaths = await buildOrderedSvgList(data.run_id, data.svgs);
+        renderWireframeLinks(data.run_id, orderedSvgPaths);
 
         logEl.textContent += "\n" + (data.stdout_tail || "");
       } catch (e) {
-        statusEl.innerHTML = `<span class="err">Build failed</span>`;
+        setStatusErr();
         logEl.textContent += "\nException:\n" + String(e);
       } finally {
         btn.disabled = false;
