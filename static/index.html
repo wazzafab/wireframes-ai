@@ -243,16 +243,14 @@
     }
 
     function renderWireframeLinks(runId, orderedSvgPaths) {
-      if (!Array.isArray(orderedSvgPaths) || orderedSvgPaths.length === 0) {
-        wireframesEl.innerHTML = `<div class="wireframe-item">No SVGs found for this run.</div>`;
-        return;
-      }
-
+      const wireframesEl = document.getElementById("wireframes");
+      if (!wireframesEl) return;
+    
       wireframesEl.innerHTML = orderedSvgPaths.map(svgPath => {
-        const cleanName = svgPath.replace(/^\//, "");
+        const cleanName = String(svgPath || "").replace(/^\//, "");
         const openHref = `/runs/${runId}/rendered_wireframes/${cleanName}`;
         const downloadHref = `/download/svg/${runId}/${cleanName}`;
-      
+    
         return `
           <div class="wireframe-item">
             Rendered Wireframe:
@@ -262,12 +260,13 @@
           </div>
         `;
       }).join("");
-      
+    
       wireframesEl.innerHTML += `
         <div style="margin-top:18px;">
           <strong><a href="/download/zip/${runId}">Download full zip</a></strong>
         </div>
       `;
+    }
 
     async function buildOrderedSvgList(runId, svgFilesFromBackend) {
       // Convert backend ["home.svg","about.svg",...] into ["/home.svg","/about.svg",...]
