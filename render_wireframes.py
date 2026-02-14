@@ -218,6 +218,14 @@ def css_block() -> str:
         opacity: 0.18;              /* faint X behind text */
       }
 
+        .vdiv {
+                stroke: #c9c9c9;
+                stroke-width: 2.0;
+                stroke-linecap: round;
+                opacity: 0.9;
+              }
+
+
     </style>
     """
 
@@ -616,6 +624,12 @@ def draw_section(svg, x, y, w, sec: dict, idx: int):
 
             col_w = (inner_w - col_gap) / 2
 
+            # --- vertical divider (between the two bullet columns) ---
+            split_x = inner_x + col_w + (col_gap / 2)
+            divider_top = col_y - 6
+            divider_bottom = col_y + (rows * row_h) + 6
+            svg.append(line(split_x, divider_top, split_x, divider_bottom, cls="imgx"))
+
             for col, col_items in enumerate([left_col, right_col]):
                 bx = inner_x + col * (col_w + col_gap)
                 for i in range(rows):
@@ -634,21 +648,34 @@ def draw_section(svg, x, y, w, sec: dict, idx: int):
             img_x = inner_x + list_w + col_gap
             img_w = inner_w - list_w - col_gap
 
+            # --- vertical divider (between list and image column) ---
+            split_x = inner_x + list_w + (col_gap / 2)
+            divider_top = col_y - 6
+            # define the full content height we consider for vertical alignment
+            content_h = (rows * row_h) + 18
+            divider_bottom = col_y + content_h + 6
+            svg.append(line(split_x, divider_top, split_x, divider_bottom, cls="imgx"))
+
             # Render single list
             for i in range(rows):
                 svg.append(text(inner_x + 6, col_y + i * row_h, "• " + truncate(items[i], 52), extra_cls="small"))
 
-            # Render sized image placeholder
-            img_h = min(240, rows * row_h + 18)
-            img_y = col_y
+            # Render sized image placeholder (CENTERED in its column: horizontally + vertically)
+            img_h = min(240, content_h)
 
-            svg.append(rect(img_x, img_y, img_w, img_h, cls="sketch-dash", rx=12))
-            svg.append(line(img_x + 10, img_y + 10, img_x + img_w - 10, img_y + img_h - 10, cls="imgx"))
-            svg.append(line(img_x + img_w - 10, img_y + 10, img_x + 10, img_y + img_h - 10, cls="imgx"))
-            svg.append(text(img_x + 14, img_y + 24, "IMAGE", extra_cls="small muted"))
+            # Center horizontally in right column
+            ph_w = int(img_w * 0.86)
+            ph_h = int(img_h * 0.82)
+
+            ph_x = img_x + (img_w - ph_w) / 2
+            ph_y = col_y + (content_h - ph_h) / 2
+
+            svg.append(rect(ph_x, ph_y, ph_w, ph_h, cls="sketch-dash", rx=12))
+            svg.append(line(ph_x + 10, ph_y + 10, ph_x + ph_w - 10, ph_y + ph_h - 10, cls="imgx"))
+            svg.append(line(ph_x + ph_w - 10, ph_y + 10, ph_x + 10, ph_y + ph_h - 10, cls="imgx"))
+            svg.append(text(ph_x + 14, ph_y + 24, "IMAGE", extra_cls="small muted"))
 
         return y + h + SECTION_GAP
-
 
     if st == "steps":
         # Render a vertical step list from list items
