@@ -301,15 +301,11 @@ def _inner_bottom_for_section(st: str, sec: dict, inner_y: int, inner_x: int, in
     st = canon(st)
 
     if st == "hero":
-        img_h = 220
-        b = inner_y + img_h
-        b = max(b, inner_y + 200)       # caption
-        b = max(b, inner_y + 150 + 34)  # button
-        # plus optional h3 lines
-        h3 = sec.get("h3") or []
-        if isinstance(h3, list) and h3:
-            b = max(b, inner_y + 120 + (len(h3) * 18))
-        return b + 14
+            img_h = 240
+            b = inner_y + img_h
+            # keep enough room for headline + subtitle + button + caption
+            b = max(b, inner_y + 240)
+            return b + 14
 
     if st == "features":
         # number of cards = 3 by default, or derived from cards/items/h3
@@ -463,27 +459,49 @@ def draw_section(svg, x, y, w, sec: dict, idx: int):
         svg.append(line(inner_x + 10, inner_y + 10, inner_x + inner_w - 10, inner_y + img_h - 10, cls="imgx"))
         svg.append(line(inner_x + inner_w - 10, inner_y + 10, inner_x + 10, inner_y + img_h - 10, cls="imgx"))
 
+        # Title
         headline = truncate(h2, 44)
-        svg.append(text(x + w/2, inner_y + 120, headline, extra_cls="h1", anchor="middle"))
+        title_y = inner_y + 118
+        svg.append(text(x + w/2, title_y, headline, extra_cls="h1", anchor="middle"))
 
-        # optional h3 lines under the headline
-        yy = inner_y + 146
+        # Subtitle: ONE short, powerful sentence (single line only)
+        subtitle = ""
         if h3:
-            for t in h3[:2]:
-                svg.append(text(x + w/2, yy, truncate(t, 80), extra_cls="small muted", anchor="middle"))
-                yy += 18
+            if isinstance(h3, list) and h3:
+                subtitle = str(h3[0])
+            else:
+                subtitle = str(h3)
+        subtitle = " ".join((subtitle or "").split())
+        subtitle = truncate(subtitle, 78)
 
-        # Place button BELOW whatever text was rendered (prevents overlap)
-        btn_y = max(inner_y + 150, yy + 10)
+        subtitle_y = title_y + 28
+        if subtitle:
+            svg.append(text(x + w/2, subtitle_y, subtitle, extra_cls="small muted", anchor="middle"))
 
+        # Button: dynamic width based on label text (consistent left/right padding)
         btn = first_button(sec)
-        btn_label = truncate(best_text_for_component(btn, "Learn More") if btn else "Learn More", 22)
-        svg.append(button(x + (w/2) - 70, btn_y, 140, 34, btn_label, dark=False))
+        btn_label = best_text_for_component(btn, "Learn More") if btn else "Learn More"
+        btn_label = " ".join(str(btn_label or "").split())
+        btn_label = truncate(btn_label, 28)
 
-        # Caption sits below button, still inside hero area
-        cap_y = btn_y + 50
+        # Approximate text width; keep within sane limits
+        btn_w = max(120, min(300, 46 + (len(btn_label) * 9)))
+        btn_h = 34
+        btn_x = x + (w/2) - (btn_w/2)
+
+        # Spacing rules: consistent breathing room from title/subtitle
+        content_bottom_y = subtitle_y if subtitle else title_y
+        btn_y = content_bottom_y + 26
+
+        svg.append(button(btn_x, btn_y, btn_w, btn_h, btn_label, dark=False))
+
+        # Caption sits below button, still inside hero area (consistent spacing)
         cap = first_text_like(sec)
-        cap_text = truncate(best_text_for_component(cap, "Caption size text here with a link") if cap else "Caption size text here with a link", 70)
+        cap_text = best_text_for_component(cap, "Caption size text here with a link") if cap else "Caption size text here with a link"
+        cap_text = " ".join(str(cap_text or "").split())
+        cap_text = truncate(cap_text, 78)
+
+        cap_y = btn_y + btn_h + 18
         svg.append(text(x + (w/2), cap_y, cap_text, extra_cls="small nav-link", anchor="middle"))
 
         return y + h + SECTION_GAP
