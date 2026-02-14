@@ -607,6 +607,9 @@ def draw_section(svg, x, y, w, sec: dict, idx: int):
         row_h = 22
         col_gap = 26
 
+        # Divider must be dead center (50/50 split), regardless of content mode
+        split_x = inner_x + (inner_w / 2)
+
         if use_two_cols:
             # Two columns, split unique items across columns (no image placeholder)
             items = bullet_items_raw[:12]  # cap for wireframe density
@@ -624,8 +627,7 @@ def draw_section(svg, x, y, w, sec: dict, idx: int):
 
             col_w = (inner_w - col_gap) / 2
 
-            # --- vertical divider (between the two bullet columns) ---
-            split_x = inner_x + col_w + (col_gap / 2)
+            # --- vertical divider (true 50/50 split) ---
             divider_top = col_y - 6
             divider_bottom = col_y + (rows * row_h) + 6
             svg.append(line(split_x, divider_top, split_x, divider_bottom, cls="imgx"))
@@ -643,32 +645,34 @@ def draw_section(svg, x, y, w, sec: dict, idx: int):
             while len(items) < rows:
                 items.append("Additional point...")
 
-            # Allocate space: list left, image right (balanced)
+            # Keep your existing list sizing (55% left list)
             list_w = int(inner_w * 0.55)
-            img_x = inner_x + list_w + col_gap
-            img_w = inner_w - list_w - col_gap
 
-            # --- vertical divider (between list and image column) ---
-            split_x = inner_x + list_w + (col_gap / 2)
-            divider_top = col_y - 6
-            # define the full content height we consider for vertical alignment
+            # Define full content height once (used by divider + image sizing)
             content_h = (rows * row_h) + 18
+
+            # --- vertical divider (true 50/50 split) ---
+            divider_top = col_y - 6
             divider_bottom = col_y + content_h + 6
             svg.append(line(split_x, divider_top, split_x, divider_bottom, cls="imgx"))
 
-            # Render single list
+            # Render single list (unchanged)
             for i in range(rows):
                 svg.append(text(inner_x + 6, col_y + i * row_h, "• " + truncate(items[i], 52), extra_cls="small"))
 
-            # Render sized image placeholder (CENTERED in its column: horizontally + vertically)
+            # Right column = everything to the right of the centered divider (respecting col_gap)
+            right_x = split_x + (col_gap / 2)
+            right_w = (inner_x + inner_w) - right_x
+
+            # Render sized image placeholder
             img_h = min(240, content_h)
 
-            # Center horizontally in right column
-            ph_w = int(img_w * 0.86)
+            # Center horizontally within the RIGHT HALF; align top with first bullet row (red line)
+            ph_w = int(right_w * 0.86)
             ph_h = int(img_h * 0.82)
 
-            ph_x = img_x + (img_w - ph_w) / 2
-            ph_y = col_y + (content_h - ph_h) / 2
+            ph_x = right_x + (right_w - ph_w) / 2
+            ph_y = col_y  # align to bullet start
 
             svg.append(rect(ph_x, ph_y, ph_w, ph_h, cls="sketch-dash", rx=12))
             svg.append(line(ph_x + 10, ph_y + 10, ph_x + ph_w - 10, ph_y + ph_h - 10, cls="imgx"))
@@ -676,6 +680,7 @@ def draw_section(svg, x, y, w, sec: dict, idx: int):
             svg.append(text(ph_x + 14, ph_y + 24, "IMAGE", extra_cls="small muted"))
 
         return y + h + SECTION_GAP
+
 
     if st == "steps":
         # Render a vertical step list from list items
