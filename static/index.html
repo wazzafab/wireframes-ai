@@ -249,15 +249,25 @@
       }
 
       wireframesEl.innerHTML = orderedSvgPaths.map(svgPath => {
-        const href = `/runs/${runId}/rendered_wireframes/${svgPath.replace(/^\//, "")}`;
+        const cleanName = svgPath.replace(/^\//, "");
+        const openHref = `/runs/${runId}/rendered_wireframes/${cleanName}`;
+        const downloadHref = `/download/svg/${runId}/${cleanName}`;
+      
         return `
           <div class="wireframe-item">
             Rendered Wireframe:
-            <a href="${href}" target="_blank">${svgPath}</a>
+            <a href="${openHref}" target="_blank">${svgPath}</a>
+            &nbsp;|&nbsp;
+            <a href="${downloadHref}">Save file</a>
           </div>
         `;
       }).join("");
-    }
+      
+      wireframesEl.innerHTML += `
+        <div style="margin-top:18px;">
+          <strong><a href="/download/zip/${runId}">Download full zip</a></strong>
+        </div>
+      `;
 
     async function buildOrderedSvgList(runId, svgFilesFromBackend) {
       // Convert backend ["home.svg","about.svg",...] into ["/home.svg","/about.svg",...]
