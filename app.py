@@ -1,6 +1,9 @@
+import os
+import re
 import shutil
 import subprocess
 import uuid
+import zipfile
 from pathlib import Path
 
 from fastapi import FastAPI, UploadFile, File, HTTPException
@@ -29,6 +32,64 @@ app.mount("/runs", StaticFiles(directory=str(OUTPUT_DIR)), name="runs")
 def home():
     return FileResponse(str(APP_ROOT / "static" / "index.html"))
 
+def _safe_run_id(run_id: str) -> bool:
+    # match your current run_id format: uuid hex shortened (10 chars)
+    return bool(re.fullmatch(r"[a-f0-9]{10}", run_id or ""))
+
+
+def _safe_svg_name(name: str) -> bool:
+    # allow only filenames like home.svg, about-us.svg, etc.
+    return bool(re.fullmatch(r"[a-z0-9][a-z0-9\-]*\.svg", (name or "").lower()))
+
+
+@app.get("/download/svg/{run_id}/{svg_name}")
+def download_svg(run_id: str, svg_name: str):
+    if not _safe_run_id(run_id):
+        raise HTTPException(status_code=400, detail="Invalid run_id")
+
+    svg_name = (svg_name or "").lower().strip()
+    if not _safe_svg_name(svg_name):
+        raise HTTPException(status_code=400, detail="Invalid svg filename")
+
+    svg_path = OUTPUT_DIR / run_id / "rendered_wireframes" / svg_name
+    if not svg_path.exists():
+        raise HTTPException(status_code=404, detail="SVG not found")
+
+    return FileResponse(
+        str(svg_path),
+        media_type="image/svg+xml",
+        filename=svg_name,  # triggers Content-Disposition: attachment
+    )
+
+
+@app.get("/download/zip/{run_id}")
+def download_svgs_zip(run_id: str):
+    if not _safe_run_id(run_id):
+        raise HTTPException(status_code=400, detail="Invalid run_id")
+
+    svg_dir = OUTPUT_DIR / run_id / "rendered_wireframes"
+    if not svg_dir.exists():
+        raise HTTPException(status_code=404, detail="Rendered SVG folder not found")
+
+    svg_files = sorted([p for p in svg_dir.glob("*.svg") if p.is_file()])
+    if not svg_files:
+        raise HTTPException(status_code=404, detail="No SVGs found to zip")
+
+    zip_path = OUTPUT_DIR / run_id / f"wireframes_{run_id}.zip"
+    # overwrite if it already exists
+    if zip_path.exists():
+        zip_path.unlink()
+
+    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as z:
+        for p in svg_files:
+            # store inside zip as just "home.svg", etc.
+            z.write(p, arcname=p.name)
+
+    return FileResponse(
+        str(zip_path),
+        media_type="application/zip",
+        filename=f"wireframes_{run_id}.zip",
+    )
 
 @app.post("/build")
 async def build(file: UploadFile = File(...)):
